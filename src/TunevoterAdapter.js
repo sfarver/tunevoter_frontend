@@ -1,8 +1,9 @@
 class TuneVoterAdapter {
   static async sendSpotifyData(args) {
+    
     const {venueSlug, accessToken} = args
     
-    await fetch('http://localhost:3000/spotify_users', {
+    await fetch('http://localhost:3000/api/v1/spotify_users', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
