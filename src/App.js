@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import SpotifyAuth from "./components/SpotifyAuth";
+import { Route, Switch } from "react-router-dom";
+import { Container } from "semantic-ui-react";
+import ThankYouPage from "./components/ThankYouPage";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <SpotifyAuth />
-      </div>
+      <Container className="main">
+        <Switch>
+          <Route path="/thankyou/:venueSlug" component={ThankYouPage} />
+        </Switch>
+      </Container>
     );
   }
 }
