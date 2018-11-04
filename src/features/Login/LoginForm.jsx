@@ -9,6 +9,18 @@ import {
   Segment
 } from "semantic-ui-react";
 import logo from "../../images/black.png";
+import TunevoterAdapter from '../../TunevoterAdapter'
+
+const handleSubmit = e => {
+  e.preventDefault()
+
+  // NOTE: Derek - what info do you want to save to state once a user logs in? We have the callback function in the adapter ready to be invoked.
+
+  TunevoterAdapter.loginUser({
+    email: e.target[0].value,
+    password: e.target[1].value
+  })
+}
 
 const LoginForm = () => (
   <div className="login-form">
@@ -29,7 +41,7 @@ const LoginForm = () => (
         <Header image={logo} as="h2" color="black" textAlign="center">
           <Image src={logo} /> Log-in to your account
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
               fluid
