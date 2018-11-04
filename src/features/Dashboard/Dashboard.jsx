@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Sidebar } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
+import logo from "../../images/dark.png";
 
 export default class Dashboard extends Component {
   render() {
@@ -7,17 +8,10 @@ export default class Dashboard extends Component {
       <div className="ui container">
         <br />
         <div className="ui secondary menu">
-          <div className="header item">Brand</div>
-          <a className="active item">Home</a>
-          <a className="item">Messages</a>
-          <a className="item">Friends</a>
+          <div className="header item">
+            <Header size="huge" image={logo} />
+          </div>
           <div className="right menu">
-            <div className="item">
-              <div className="ui icon input">
-                <input type="text" placeholder="Search..." />
-                <i className="search link icon" />
-              </div>
-            </div>
             <a className="ui item">Logout</a>
           </div>
         </div>
@@ -27,17 +21,17 @@ export default class Dashboard extends Component {
           <div className="four wide column">
             <div className="ui secondary vertical pointing fluid menu">
               <a className="item">Home</a>
-              <a className="item">Messages</a>
-              <a className="item active">Friends</a>
+              <a className="item">View Users</a>
+              <a className="item">View Top Artists</a>
             </div>
           </div>
           <div className="twelve wide column">
             <div className="ui form">
               <div className="field">
-                <input type="text" name="first-name" placeholder="First name" />
+                {/* <input type="text" name="first-name" placeholder="First name" /> */}
               </div>
               <div className="field">
-                <textarea placeholder="Some example text..." />
+                {/* <textarea placeholder="Some example text..." /> */}
               </div>
             </div>
           </div>
