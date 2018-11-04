@@ -1,4 +1,5 @@
-const TV_API = 'http://localhost:3000'
+const TV_API = 'api.tunevoter.com'
+// const TV_API = 'http://localhost:3000'
 
 class TunevoterAdapter {
   static async sendSpotifyData(args) {
