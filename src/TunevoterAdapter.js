@@ -1,4 +1,4 @@
-const TV_API = 'api.tunevoter.com'
+const TV_API = 'http://api.tunevoter.com'
 // const TV_API = 'http://localhost:3000'
 
 class TunevoterAdapter {
@@ -63,8 +63,7 @@ class TunevoterAdapter {
     let result = await fetch(`${TV_API}/api/v1/login`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.token
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         venue: {
