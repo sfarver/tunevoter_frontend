@@ -1,6 +1,17 @@
 import React from "react";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import logo from "../../images/black.png";
+import TunevoterAdapter from '../../TunevoterAdapter'
+
+const handleSubmit = e => {
+  e.preventDefault()
+  // NOTE: Derek - we need password validation here, I can enter different passes and still hit. Lower priority though
+
+  TunevoterAdapter.signupUser({
+    email: e.target[0].value,
+    password: e.target[1].value
+  })
+}
 
 const SignUpForm = () => (
   <div className="login-form">
@@ -16,7 +27,7 @@ const SignUpForm = () => (
         <Header as="h2" color="black" textAlign="center">
           <Image src={logo} />
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
               fluid

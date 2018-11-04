@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Adapter from "../../TunevoterAdapter";
+import TunevoterAdapter from "../../TunevoterAdapter";
 import queryString from "query-string";
 import logo from "../../images/black.png";
 import { Image, Grid } from "semantic-ui-react";
@@ -12,7 +12,7 @@ class ThankYouPage extends Component {
 
     console.log(venueSlug, accessToken);
 
-    Adapter.sendSpotifyData({ venueSlug, accessToken });
+    TunevoterAdapter.sendSpotifyData({ venueSlug, accessToken });
   }
 
   render() {
