@@ -8,7 +8,7 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import logo from "../../images/dark.png";
+import logo from "../../images/black.png";
 
 const LoginForm = () => (
   <div className="login-form">
@@ -26,7 +26,7 @@ const LoginForm = () => (
     `}</style>
     <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="black" textAlign="center">
+        <Header image={logo} as="h2" color="black" textAlign="center">
           <Image src={logo} /> Log-in to your account
         </Header>
         <Form size="large">

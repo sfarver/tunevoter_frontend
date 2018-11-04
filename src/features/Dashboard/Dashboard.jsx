@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Header } from "semantic-ui-react";
-import logo from "../../images/dark.png";
+import { Header, Button } from "semantic-ui-react";
+import logo from "../../images/black.png";
 
 export default class Dashboard extends Component {
   render() {
+    console.log(this.props);
+
     return (
       <div className="ui container">
         <br />
@@ -12,7 +14,7 @@ export default class Dashboard extends Component {
             <Header size="huge" image={logo} />
           </div>
           <div className="right menu">
-            <a className="ui item">Logout</a>
+            <Button className="ui item">Logout</Button>
           </div>
         </div>
         <div className="ui divider" />
@@ -20,21 +22,12 @@ export default class Dashboard extends Component {
         <div className="ui grid">
           <div className="four wide column">
             <div className="ui secondary vertical pointing fluid menu">
-              <a className="item">Home</a>
-              <a className="item">View Users</a>
-              <a className="item">View Top Artists</a>
+              <Button className="item">View Users</Button>
+              <Button className="item">View Top Artists</Button>
+              <Button className="item">Create Link</Button>
             </div>
           </div>
-          <div className="twelve wide column">
-            <div className="ui form">
-              <div className="field">
-                {/* <input type="text" name="first-name" placeholder="First name" /> */}
-              </div>
-              <div className="field">
-                {/* <textarea placeholder="Some example text..." /> */}
-              </div>
-            </div>
-          </div>
+          <div className="twelve wide column">{}</div>
         </div>
       </div>
     );
