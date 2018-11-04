@@ -7,14 +7,49 @@ import ThankYouPage from "./features/ThankYou/ThankYouPage";
 import Dashboard from "./features/Dashboard/Dashboard";
 
 class App extends Component {
-  render() {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUserEmail: "",
+      isLoggedIn: false
+    };
+
+    this.handleLoginResponse = data => {
+      this.setState({
+        currentUserEmail: data.currentUserEmail,
+        isLoggedIn: true
+      });
+    };
+  }
+
+  render(props) {
+    const { currentUserEmail, isLoggedIn } = this.state;
     return (
       <Container className="main">
         <Switch>
           <Route path="/thankyou/:venueSlug" component={ThankYouPage} />
-          <Route path="/login" component={LoginForm} />
+          <Route
+            path="/login"
+            render={props => (
+              <LoginForm
+                {...props}
+                handleResponse={this.handleLoginResponse}
+                isLoggedIn={isLoggedIn}
+              />
+            )}
+          />
           <Route path="/signup" component={SignUpForm} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route
+            path="/dashboard"
+            render={props => (
+              <Dashboard
+                {...props}
+                user={currentUserEmail}
+                isLoggedIn={isLoggedIn}
+              />
+            )}
+          />
         </Switch>
       </Container>
     );
