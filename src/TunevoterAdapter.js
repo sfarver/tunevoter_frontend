@@ -3,7 +3,7 @@ class TuneVoterAdapter {
     
     const {venueSlug, accessToken} = args
     
-    await fetch('http://localhost:3000/api/v1/spotify_users', {
+    await fetch('https://tunevoter-backend.herokuapp.com/api/v1/spotify_users', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
