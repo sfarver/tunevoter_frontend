@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Adapter from "../TunevoterAdapter";
+import TunevoterAdapter from "../TunevoterAdapter";
 const queryString = require('query-string');
 
 class ThankYouPage extends Component {
@@ -12,7 +12,7 @@ class ThankYouPage extends Component {
     
     console.log(venueSlug, accessToken);
     
-    Adapter.sendSpotifyData({ venueSlug, accessToken });
+    TunevoterAdapter.sendSpotifyData({ venueSlug, accessToken });
   }
 
   render() {
