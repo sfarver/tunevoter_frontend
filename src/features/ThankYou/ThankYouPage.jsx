@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TunevoterAdapter from "../../TunevoterAdapter";
 import queryString from "query-string";
-import logo from "../../images/black.png";
+import logo from "../../images/dark.png";
 import { Image, Grid } from "semantic-ui-react";
 
 class ThankYouPage extends Component {
