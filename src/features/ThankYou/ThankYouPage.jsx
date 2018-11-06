@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import TunevoterAdapter from "../../TunevoterAdapter";
-import queryString from "query-string";
 import logo from "../../images/black.png";
 import { Image, Grid } from "semantic-ui-react";
+const queryString = require('query-string')
 
 class ThankYouPage extends Component {
   componentDidMount() {
     const { venueSlug } = this.props.match.params;
 
-    const accessToken = queryString.parse(window.location.search);
-
-    console.log(venueSlug, accessToken);
+    const accessToken = queryString.parse(window.location.hash).access_token;
 
     TunevoterAdapter.sendSpotifyData({ venueSlug, accessToken });
   }
