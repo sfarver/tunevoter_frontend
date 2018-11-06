@@ -29,9 +29,6 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
-    this.props.isLoggedIn
-      ? (window.location.href = "http://app.tunevoter.com/dashboard")
-      : (window.location.href = "http://app.tunevoter.com/login");
   }
 
   render() {
