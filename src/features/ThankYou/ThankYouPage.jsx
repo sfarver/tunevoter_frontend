@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import TunevoterAdapter from "../../TunevoterAdapter";
-import logo from "../../images/black.png";
+import queryString from "query-string";
+import logo from "../../images/dark.png";
 import { Image, Grid } from "semantic-ui-react";
-const queryString = require('query-string')
+
+const queryString = require("query-string");
 
 class ThankYouPage extends Component {
   componentDidMount() {

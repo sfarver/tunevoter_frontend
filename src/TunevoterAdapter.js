@@ -29,7 +29,7 @@ class TunevoterAdapter {
         Authorization: "Bearer " + localStorage.token
       }
     });
-
+    debugger;
     let all_data = await result.json();
 
     // NOTE: Derek I need to transform data here with "data" variable
