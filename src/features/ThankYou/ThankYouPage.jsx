@@ -4,8 +4,6 @@ import queryString from "query-string";
 import logo from "../../images/dark.png";
 import { Image, Grid } from "semantic-ui-react";
 
-const queryString = require("query-string");
-
 class ThankYouPage extends Component {
   componentDidMount() {
     const { venueSlug } = this.props.match.params;

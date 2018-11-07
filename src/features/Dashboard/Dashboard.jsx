@@ -9,6 +9,8 @@ export default class Dashboard extends Component {
     super();
 
     this.state = {
+      artists: {},
+      genres: {},
       data: {
         labels: ["Rock", "Hip Hop", "Country", "EDM", "Indie", "Metal", "Punk"],
         datasets: [
@@ -38,14 +40,15 @@ export default class Dashboard extends Component {
       }
     };
 
-    this.handleResponse = data => {
+    this.handleResponse = (key, data) => {
       console.log(data);
-      this.setState(data);
+      this.setState([key]: data);
     };
   }
 
   componentDidMount() {
     Adapter.getTopArtists({ callbackFunction: this.handleResponse });
+    Adapter.getTopGenres({ callbackFunction: this.handleResponse });
   }
 
   render() {

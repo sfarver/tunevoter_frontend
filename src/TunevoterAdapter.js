@@ -29,13 +29,32 @@ class TunevoterAdapter {
         Authorization: "Bearer " + localStorage.token
       }
     });
-    debugger;
+
     let all_data = await result.json();
 
     // NOTE: Derek I need to transform data here with "data" variable
     let data = all_data;
 
-    callbackFunction(data);
+    callbackFunction("artists", data);
+  }
+  
+  static async getTopGenres(args) {
+    const { callbackFunction } = args;
+
+    let result = await fetch(`${TV_API}/api/v1/top_genres`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.token
+      }
+    });
+
+    let all_data = await result.json();
+
+    // NOTE: Derek I need to transform data here with "data" variable
+    let data = all_data;
+
+    callbackFunction("genres", data);
   }
 
   static async signupUser(args) {
