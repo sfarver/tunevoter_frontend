@@ -39,6 +39,7 @@ export default class Dashboard extends Component {
     };
 
     this.handleResponse = data => {
+      console.log(data);
       this.setState(data);
     };
   }
