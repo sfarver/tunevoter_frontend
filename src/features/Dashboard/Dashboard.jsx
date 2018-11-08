@@ -44,7 +44,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    Adapter.getTopArtists({ callbackFunction: this.handleResponse });
+    // Adapter.getTopArtists({ callbackFunction: this.handleResponse });
   }
 
   render() {
