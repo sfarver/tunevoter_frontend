@@ -2,48 +2,25 @@ import React, { Component } from "react";
 import { Header, Button } from "semantic-ui-react";
 import logo from "../../images/black.png";
 import Adapter from "../../TunevoterAdapter";
-import { Pie } from "react-chartjs-2";
+import TopArtists from "./Charts/TopArtists";
+import TopGenres from "./Charts/TopGenres";
+import UsersChart from "./Charts/UsersChart";
+import Campaign from "./Charts/Campaign";
 
 export default class Dashboard extends Component {
   constructor() {
     super();
 
     this.state = {
+      activeTab: null,
       userGrowth: {},
       artists: {},
-      genres: {},
-      data: {
-        labels: ["Rock", "Hip Hop", "Country", "EDM", "Indie", "Metal", "Punk"],
-        datasets: [
-          {
-            label: "Top Genres",
-            backgroundColor: [
-              "#fdff36",
-              "#ff00a7",
-              "#09ff00",
-              "#c900ff",
-              "#ff9a00",
-              "#00cdff",
-              "#8500ff"
-            ],
-            hoverBackgroundColor: [
-              "#fdff36",
-              "#ff00a7",
-              "#09ff00",
-              "#c900ff",
-              "#ff9a00",
-              "#00cdff",
-              "#8500ff"
-            ],
-            data: [10, 10, 5, 2, 20, 30, 45]
-          }
-        ]
-      }
+      genres: {}
     };
 
     this.handleResponse = (key, data) => {
       console.log(data);
-      this.setState([key]: data);
+      this.setState({ [key]: data });
     };
   }
 
@@ -54,7 +31,7 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { artists, genres, activeTab } = this.state;
     return (
       <div className="ui container">
         <br />
@@ -71,21 +48,40 @@ export default class Dashboard extends Component {
         <div className="ui grid">
           <div className="four wide column">
             <div className="ui secondary vertical pointing fluid menu">
-              <Button className="item">View Top Genres</Button>
-              <Button className="item">View Top Artists</Button>
-              <Button className="item">View Users</Button>
-              <Button className="item">Create Link</Button>
+              <Button
+                onClick={() => this.setState({ activeTab: "genreChart" })}
+                className="item"
+              >
+                View Top Genres
+              </Button>
+              <Button
+                onClick={() => this.setState({ activeTab: "artistsChart" })}
+                className="item"
+              >
+                View Top Artists
+              </Button>
+              <Button
+                onClick={() => this.setState({ activeTab: "usersChart" })}
+                className="item"
+              >
+                View Users
+              </Button>
+              <Button
+                onClick={() => this.setState({ activeTab: "campaign" })}
+                className="item"
+              >
+                Campaign
+              </Button>
             </div>
           </div>
           <div className="twelve wide column">
-            <Pie
-              data={data}
-              width={100}
-              height={300}
-              options={{
-                maintainAspectRatio: false
-              }}
-            />
+            {activeTab === "genreChart" ? <TopGenres data={genres} /> : null}
+            {activeTab === "artistsChart" ? (
+              <TopArtists data={artists} />
+            ) : null}
+            {activeTab === "usersChart" ? <UsersChart /> : null}
+            {activeTab === "campaign" ? <Campaign /> : null}
+            {activeTab === null ? <h1>Select an option on the left</h1> : null}
           </div>
         </div>
       </div>

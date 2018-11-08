@@ -37,7 +37,7 @@ class TunevoterAdapter {
 
     callbackFunction("artists", data);
   }
-  
+
   static async getTopGenres(args) {
     const { callbackFunction } = args;
 
@@ -66,10 +66,10 @@ class TunevoterAdapter {
 
     callbackFunction("genres", new_object);
   }
-  
+
   static async getUsersOverTime(args) {
     const { callbackFunction } = args;
-    
+
     let result = await fetch(`${TV_API}/api/v1/spotify_users`, {
       method: "GET",
       headers: {
@@ -77,9 +77,9 @@ class TunevoterAdapter {
         Authorization: "Bearer " + localStorage.token
       }
     });
-    
+    console.log("result:", result);
     let all_data = await result.json();
-    
+
     callbackFunction("userGrowth", all_data);
   }
 
