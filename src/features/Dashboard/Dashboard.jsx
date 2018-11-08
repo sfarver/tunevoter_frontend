@@ -12,14 +12,13 @@ export default class Dashboard extends Component {
     super();
 
     this.state = {
-      activeTab: null,
+      activeTab: "genreChart",
       userGrowth: {},
       artists: {},
       genres: {}
     };
 
     this.handleResponse = (key, data) => {
-      console.log(data);
       this.setState({ [key]: data });
     };
   }
@@ -75,9 +74,9 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className="twelve wide column">
-            {activeTab === "genreChart" ? <TopGenres data={genres} /> : null}
+            {activeTab === "genreChart" ? <TopGenres genres={genres} /> : null}
             {activeTab === "artistsChart" ? (
-              <TopArtists data={artists} />
+              <TopArtists artists={artists} />
             ) : null}
             {activeTab === "usersChart" ? <UsersChart /> : null}
             {activeTab === "campaign" ? <Campaign /> : null}
