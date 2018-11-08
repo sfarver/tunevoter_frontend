@@ -9,6 +9,7 @@ export default class Dashboard extends Component {
     super();
 
     this.state = {
+      userGrowth: {},
       artists: {},
       genres: {},
       data: {
@@ -49,6 +50,7 @@ export default class Dashboard extends Component {
   componentDidMount() {
     Adapter.getTopArtists({ callbackFunction: this.handleResponse });
     Adapter.getTopGenres({ callbackFunction: this.handleResponse });
+    Adapter.getUsersOverTime({ callbackFunction: this.handleResponse });
   }
 
   render() {

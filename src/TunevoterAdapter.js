@@ -1,5 +1,5 @@
-const TV_API = "http://api.tunevoter.com";
-// const TV_API = "http://localhost:3000";
+// const TV_API = "http://api.tunevoter.com";
+const TV_API = "http://localhost:3000";
 
 class TunevoterAdapter {
   static async sendSpotifyData(args) {
@@ -55,6 +55,22 @@ class TunevoterAdapter {
     let data = all_data;
 
     callbackFunction("genres", data);
+  }
+  
+  static async getUsersOverTime(args) {
+    const { callbackFunction } = args;
+    
+    let result = await fetch(`${TV_API}/api/v1/spotify_users`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.token
+      }
+    });
+    
+    let all_data = await result.json();
+    
+    callbackFunction("userGrowth", all_data);
   }
 
   static async signupUser(args) {
