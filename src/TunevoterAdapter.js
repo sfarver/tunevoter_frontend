@@ -1,3 +1,5 @@
+import { GraphUtils } from './utils'
+
 const TV_API = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "http://api.tunevoter.com" 
 
 class TunevoterAdapter {
@@ -29,12 +31,11 @@ class TunevoterAdapter {
       }
     });
 
-    let all_data = await result.json();
+    let allData = await result.json();
 
-    // NOTE: Derek I need to transform data here with "data" variable
-    let data = all_data;
+    let transformedData = GraphUtils.limitGraphOptions(allData, 15)
 
-    callbackFunction("artists", data);
+    callbackFunction("artists", transformedData);
   }
 
   static async getTopGenres(args) {
@@ -48,22 +49,11 @@ class TunevoterAdapter {
       }
     });
 
-    let all_data = await result.json();
+    let allData = await result.json();
 
-    let new_object = {"Others": 0}
-    let values_array = Object.values(all_data).sort((a,b) => b - a)
+    let transformedData = GraphUtils.limitGraphOptions(allData, 15)
 
-    for (let i=0; i < values_array.length; i++) {
-      if (i <= 15) {
-        let key = Object.keys(all_data).find(key => all_data[key] === values_array[i])
-        
-        new_object[key] = values_array[i]
-      } else {
-        new_object["Others"] += values_array[i]
-      }
-    }
-
-    callbackFunction("genres", new_object);
+    callbackFunction("genres", transformedData);
   }
 
   static async getUsersOverTime(args) {
@@ -77,9 +67,9 @@ class TunevoterAdapter {
       }
     });
     console.log("result:", result);
-    let all_data = await result.json();
+    let allData = await result.json();
 
-    callbackFunction("userGrowth", all_data);
+    callbackFunction("userGrowth", allData);
   }
 
   static async signupUser(args) {
@@ -116,12 +106,12 @@ class TunevoterAdapter {
       })
     });
 
-    let auth_data = await result.json();
-    if (!!auth_data.jwt) {
-      localStorage.token = auth_data.jwt;
+    let authData = await result.json();
+    if (!!authData.jwt) {
+      localStorage.token = authData.jwt;
 
       return callbackFunction({
-        currentUserEmail: auth_data.venue.email
+        currentUserEmail: authData.venue.email
       });
     } else {
       console.log("Could not log in");
