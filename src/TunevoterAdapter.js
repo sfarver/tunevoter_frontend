@@ -51,10 +51,20 @@ class TunevoterAdapter {
 
     let all_data = await result.json();
 
-    // NOTE: Derek I need to transform data here with "data" variable
-    let data = all_data;
+    let new_object = {"Others": 0}
+    let values_array = Object.values(all_data).sort((a,b) => b - a)
 
-    callbackFunction("genres", data);
+    for (let i=0; i < values_array.length; i++) {
+      if (i <= 15) {
+        let key = Object.keys(all_data).find(key => all_data[key] === values_array[i])
+        
+        new_object[key] = values_array[i]
+      } else {
+        new_object["Others"] += values_array[i]
+      }
+    }
+
+    callbackFunction("genres", new_object);
   }
   
   static async getUsersOverTime(args) {
