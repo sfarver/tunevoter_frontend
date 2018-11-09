@@ -37,7 +37,14 @@ export default class Dashboard extends Component {
     };
 
     this.users = () => {
-      return <UsersChart />;
+      return (
+        <Grid centered="true">
+          <Grid.Row width={4}>
+            <UsersChart userGrowth={this.state.userGrowth} />
+          </Grid.Row>
+          <Divider section />
+        </Grid>
+      );
     };
 
     this.campaign = () => {
@@ -48,11 +55,12 @@ export default class Dashboard extends Component {
   componentDidMount() {
     Adapter.getTopArtists({ callbackFunction: this.handleResponse });
     Adapter.getTopGenres({ callbackFunction: this.handleResponse });
-    // Adapter.getUsersOverTime({ callbackFunction: this.handleResponse });
+    Adapter.getUsersOverTime({ callbackFunction: this.handleResponse });
   }
 
   render() {
     const { activeTab } = this.state;
+
     return (
       <div className="ui container">
         <br />
