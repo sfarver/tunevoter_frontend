@@ -4,7 +4,7 @@ import { randomColor } from "randomcolor";
 
 function TopGenres({ genres }) {
   const data = {
-    labels: Object.keys(genres).slice(0, 10),
+    labels: Object.keys(genres),
     datasets: [
       {
         label: "Top Genres",
@@ -15,7 +15,7 @@ function TopGenres({ genres }) {
         borderWidth: 1,
         hoverBackgroundColor: "rgb(255,99,132)",
         hoverBorderColor: "rgb(255,99,132)",
-        data: Object.values(genres).slice(0, 10)
+        data: Object.values(genres)
       }
     ]
   };
