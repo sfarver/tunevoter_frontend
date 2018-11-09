@@ -1,6 +1,5 @@
 import { GraphUtils } from './utils'
-
-const TV_API = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "http://api.tunevoter.com" 
+import { TV_API } from './constants'
 
 class TunevoterAdapter {
   static async sendSpotifyData(args) {

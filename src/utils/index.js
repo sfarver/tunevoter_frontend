@@ -1,1 +1,1 @@
-export { default as GraphUtils} from './GraphUtils';
+export { GraphUtils as GraphUtils} from './GraphUtils';
