@@ -112,7 +112,7 @@ class TunevoterAdapter {
         currentUserEmail: authData.venue.email
       });
     } else {
-      console.log("Could not log in");
+      alert("Could not log in");
     }
   }
 }
