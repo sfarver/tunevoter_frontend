@@ -20,11 +20,23 @@ function TopGenres({ genres }) {
     ]
   };
 
-  console.log(data.datasets);
-
   return (
     <div>
-      <Pie data={data} width={250} height={500} />
+      <Pie
+        data={data}
+        width={800}
+        height={250}
+        options={{
+          maintainAspectRatio: false,
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: "Top Genres"
+          }
+        }}
+      />
     </div>
   );
 }

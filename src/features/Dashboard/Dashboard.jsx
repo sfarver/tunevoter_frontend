@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Header, Button } from "semantic-ui-react";
+import { Header, Button, Grid, Divider } from "semantic-ui-react";
 import logo from "../../images/black.png";
 import Adapter from "../../TunevoterAdapter";
 import TopArtists from "./Charts/TopArtists";
@@ -12,7 +12,7 @@ export default class Dashboard extends Component {
     super();
 
     this.state = {
-      activeTab: "genreChart",
+      activeTab: "home",
       userGrowth: {},
       artists: {},
       genres: {}
@@ -21,16 +21,38 @@ export default class Dashboard extends Component {
     this.handleResponse = (key, data) => {
       this.setState({ [key]: data });
     };
+
+    this.home = () => {
+      return (
+        <Grid centered="true">
+          <Grid.Row width={4}>
+            <TopGenres genres={this.state.genres} />
+          </Grid.Row>
+          <Divider section />
+          <Grid.Row width={4}>
+            <TopArtists artists={this.state.artists} />
+          </Grid.Row>
+        </Grid>
+      );
+    };
+
+    this.users = () => {
+      return <UsersChart />;
+    };
+
+    this.campaign = () => {
+      return <Campaign />;
+    };
   }
 
   componentDidMount() {
     Adapter.getTopArtists({ callbackFunction: this.handleResponse });
     Adapter.getTopGenres({ callbackFunction: this.handleResponse });
-    Adapter.getUsersOverTime({ callbackFunction: this.handleResponse });
+    // Adapter.getUsersOverTime({ callbackFunction: this.handleResponse });
   }
 
   render() {
-    const { artists, genres, activeTab } = this.state;
+    const { activeTab } = this.state;
     return (
       <div className="ui container">
         <br />
@@ -48,22 +70,16 @@ export default class Dashboard extends Component {
           <div className="four wide column">
             <div className="ui secondary vertical pointing fluid menu">
               <Button
-                onClick={() => this.setState({ activeTab: "genreChart" })}
+                onClick={() => this.setState({ activeTab: "home" })}
                 className="item"
               >
-                View Top Genres
+                Home
               </Button>
               <Button
-                onClick={() => this.setState({ activeTab: "artistsChart" })}
+                onClick={() => this.setState({ activeTab: "users" })}
                 className="item"
               >
-                View Top Artists
-              </Button>
-              <Button
-                onClick={() => this.setState({ activeTab: "usersChart" })}
-                className="item"
-              >
-                View Users
+                Users
               </Button>
               <Button
                 onClick={() => this.setState({ activeTab: "campaign" })}
@@ -74,13 +90,9 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className="twelve wide column">
-            {activeTab === "genreChart" ? <TopGenres genres={genres} /> : null}
-            {activeTab === "artistsChart" ? (
-              <TopArtists artists={artists} />
-            ) : null}
-            {activeTab === "usersChart" ? <UsersChart /> : null}
-            {activeTab === "campaign" ? <Campaign /> : null}
-            {activeTab === null ? <h1>Select an option on the left</h1> : null}
+            {activeTab === "home" ? this.home() : null}
+            {activeTab === "users" ? this.users() : null}
+            {activeTab === "campaign" ? this.campaign() : null}
           </div>
         </div>
       </div>

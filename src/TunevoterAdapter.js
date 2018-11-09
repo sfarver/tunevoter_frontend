@@ -1,6 +1,7 @@
-import { GraphUtils } from './utils'
+import { GraphUtils } from "./utils";
 
-const TV_API = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "http://api.tunevoter.com" 
+// const TV_API = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "http://api.tunevoter.com"
+const TV_API = "http://api.tunevoter.com";
 
 class TunevoterAdapter {
   static async sendSpotifyData(args) {
@@ -33,7 +34,7 @@ class TunevoterAdapter {
 
     let allData = await result.json();
 
-    let transformedData = GraphUtils.limitGraphOptions(allData, 15)
+    let transformedData = GraphUtils.limitGraphOptions(allData, 15);
 
     callbackFunction("artists", transformedData);
   }
@@ -51,7 +52,7 @@ class TunevoterAdapter {
 
     let allData = await result.json();
 
-    let transformedData = GraphUtils.limitGraphOptions(allData, 15)
+    let transformedData = GraphUtils.limitGraphOptions(allData, 15);
 
     callbackFunction("genres", transformedData);
   }
@@ -66,7 +67,6 @@ class TunevoterAdapter {
         Authorization: "Bearer " + localStorage.token
       }
     });
-    console.log("result:", result);
     let allData = await result.json();
 
     callbackFunction("userGrowth", allData);
