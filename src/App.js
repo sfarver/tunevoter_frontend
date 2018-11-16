@@ -20,6 +20,8 @@ class App extends Component {
         currentUserEmail: data.currentUserEmail,
         isLoggedIn: true
       });
+
+      window.location.href = "http://localhost:3000/dashboard";
     };
   }
 
@@ -40,16 +42,18 @@ class App extends Component {
             )}
           />
           <Route path="/signup" component={SignUpForm} />
-          <Route
-            path="/dashboard"
-            render={props => (
-              <Dashboard
-                {...props}
-                user={currentUserEmail}
-                isLoggedIn={isLoggedIn}
-              />
-            )}
-          />
+          {isLoggedIn && (
+            <Route
+              path="/dashboard"
+              render={props => (
+                <Dashboard
+                  {...props}
+                  user={currentUserEmail}
+                  isLoggedIn={isLoggedIn}
+                />
+              )}
+            />
+          )}
         </Switch>
       </Container>
     );

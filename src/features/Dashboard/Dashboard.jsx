@@ -8,8 +8,8 @@ import UsersChart from "./Charts/UsersChart";
 import Campaign from "./Charts/Campaign";
 
 export default class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       activeTab: "home",
@@ -60,6 +60,7 @@ export default class Dashboard extends Component {
 
   render() {
     const { activeTab } = this.state;
+    const user = this.props.user;
 
     return (
       <div className="ui container">
@@ -67,6 +68,9 @@ export default class Dashboard extends Component {
         <div className="ui secondary menu">
           <div className="header item">
             <Header size="huge" image={logo} />
+          </div>
+          <div className="right menu">
+            <Button className="ui item">Hello {user}</Button>
           </div>
           <div className="right menu">
             <Button className="ui item">Logout</Button>

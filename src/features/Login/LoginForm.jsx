@@ -15,21 +15,23 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      email: "",
+      password: ""
+    };
+
     this.handleSubmit = e => {
       e.preventDefault();
 
-      // NOTE: Derek - what info do you want to save to state once a user logs in? We have the callback function in the adapter ready to be invoked.
-
       TunevoterAdapter.loginUser({
-        email: e.target[0].value,
-        password: e.target[1].value,
+        email: this.state.email,
+        password: this.state.password,
         callbackFunction: this.props.handleResponse
       });
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
@@ -48,7 +50,7 @@ class LoginForm extends Component {
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" color="black" textAlign="center">
-              <Image src={logo} /> Log-in to your account
+              <Image src={logo} />
             </Header>
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment stacked>
@@ -57,6 +59,7 @@ class LoginForm extends Component {
                   icon="user"
                   iconPosition="left"
                   placeholder="E-mail address"
+                  onChange={e => this.setState({ email: e.target.value })}
                 />
                 <Form.Input
                   fluid
@@ -64,6 +67,7 @@ class LoginForm extends Component {
                   iconPosition="left"
                   placeholder="Password"
                   type="password"
+                  onChange={e => this.setState({ password: e.target.value })}
                 />
 
                 <Button color="black" fluid size="large">
@@ -72,7 +76,14 @@ class LoginForm extends Component {
               </Segment>
             </Form>
             <Message>
-              New to us? <Button>Sign Up</Button>
+              New to us?{" "}
+              <Button
+                onClick={() =>
+                  (window.location.href = "http://localhost:3000/signup")
+                }
+              >
+                Sign Up
+              </Button>
             </Message>
           </Grid.Column>
         </Grid>
